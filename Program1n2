@@ -1,0 +1,49 @@
+Program1
+
+import { useState } from "react";
+
+export default function App() {
+  const [text, setText] = useState("");
+
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>Hello VCET</h1>
+      <input
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Type something..."
+      />
+      <h1>{text}</h1>
+    </div>
+  );
+}
+
+Program2
+import Header from "./Header";
+import Footer from "./Footer";
+
+export default function App() {
+  return (
+    <>
+      <Header title="Welcome to React World" />
+      <Footer tagline="Code. Create. Innovate." year="2025" />
+    </>
+  );
+}
+
+export default function Header({ title }) {
+  return (
+    <h1 style={{ background: "#7d8b99", color: "white", padding: "20px", textAlign: "center" }}>
+      {title}
+    </h1>
+  );
+}
+
+export default function Footer({ tagline, year }) {
+  return (
+    <div style={{ background: "#7d8b99", color: "white", padding: "10px", textAlign: "center" }}>
+      <p>{tagline}</p>
+      <p>© {year} Creative Coders Ltd.</p>
+    </div>
+  );
+}
