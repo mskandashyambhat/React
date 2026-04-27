@@ -1,0 +1,101 @@
+App.js
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./Navbar";
+import Home from "./Home";
+import About from "./About";
+import Contact from "./Contact";
+function App() {
+return (
+<BrowserRouter>
+<Navbar />
+<Routes>
+<Route path="/" element={<Home />} />
+<Route path="/about" element={<About />} />
+<Route path="/contact" element={<Contact />} />
+</Routes>
+</BrowserRouter>
+);
+}
+export default App;
+
+
+
+About.js
+import React from "react";
+function About() {
+return (
+<div className="page">
+<h1>About Us</h1>
+<p>Learn more about us on this page.</p>
+</div>
+);
+}
+export default About;
+
+
+Contact.js
+import React from "react";
+function Contact() {
+return (
+<div className="page">
+<h1>Contact Us</h1>
+<p>Get in touch with us here!</p>
+</div>
+);
+}
+export default Contact;
+
+
+Home.js
+import React from "react";
+function Home() {
+return (
+<div className="page">
+<h1>Welcome to the Home Page!</h1>
+<p>This is the home page of simple React application.</p>
+</div>
+);
+}
+export default Home;
+
+
+Navbar.js
+import React from "react";
+import { NavLink } from "react-router-dom";
+import "./App.css";
+function Navbar() {
+return (
+<nav className="navbar">
+<NavLink to="/" className="nav-link">Home</NavLink>
+<NavLink to="/about" className="nav-link">About</NavLink>
+<NavLink to="/contact" className="nav-link">Contact</NavLink>
+</nav>
+);
+}
+export default Navbar;
+
+
+App.css
+.navbar {
+background-color: darkslateblue;
+padding: 15px;
+text-align: center;
+}
+.nav-link {
+color: white;
+margin: 0 15px;
+text-decoration: none;
+font-size: 18px;
+}
+.nav-link:hover {
+color: yellow;
+}
+.nav-link.active {
+color: lightgreen;
+font-weight: bold;
+}
+.page {
+text-align: center;
+margin-top: 40px;
+}
