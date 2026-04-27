@@ -1,0 +1,70 @@
+App.js
+import React from "react";
+import ProfileCard from "./ProfileCard";
+import "./App.css";
+function App() {
+return (
+<div className="app">
+<ProfileCard
+name="Joy"
+bio="A passionate software developer with a love for creating impactful solutions."
+profilePicture="https://randomuser.me/api/portraits/women/80.jpg"
+color="Light Yellow"
+/>
+</div>
+);
+}
+export default App;
+App.css
+.app {
+display: flex;
+align-items: center;
+height:100vh;
+background-color: #f0f0f0;
+}
+ProfileCard.js
+import React from "react";
+import "./ProfileCard.css";
+function ProfileCard({ name, bio, profilePicture, color }) {
+return (
+// Apply external CSS class and dynamic inline styles
+<div className="profile-card"
+style={{ backgroundColor: color, textAlign: 'center' }}>
+<img
+src={profilePicture}
+alt= {name + " 's profile "}
+/>
+<h2 >{name}</h2>
+<p >{bio}</p>
+</div >
+)
+}
+export default ProfileCard;
+ProfileCard.css
+.profile-card {
+padding: 20px;
+border: 1px solid #ccc;
+border-radius: 15px;
+width: 300px;
+margin: auto; /* vertical + horizontal centering */
+transition: transform 0.3s ease, background-color 0.3s ease-in-out;
+}
+.profile-card:hover {
+transform: scale(1.5);/* Lift the card slightly on hover */
+box-shadow: 0 20px 20px rgba(0, 0, 0, 0.5);
+}
+img {
+width: 150px;
+height: 150px;
+border-radius: 50%;
+}
+h2 {
+font-size: 32px;
+/* font-size: 2em; 1em=16px */
+font-weight: bold;
+color: #333;
+}
+p {
+/* font-size: 1em;*/
+color: #555;
+}
