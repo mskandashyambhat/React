@@ -1,0 +1,133 @@
+App.js
+import React from 'react';
+import './App.css';
+import FigureList from './FigureList';
+function App() {
+return (
+<div className="App">
+<h1>Figure Gallery</h1>
+<FigureList />
+</div>
+);
+}
+export default App;
+FigureList.js
+import React, { useState } from "react";
+
+function BasicFigure({ image, caption, onRemove }) {
+return (
+<div className="basic-figure">
+<img src={image} alt={caption} className="figure-image" />
+<figcaption className="figure-caption">{caption}</figcaption>
+<button className="remove-button" onClick={onRemove}>
+Remove
+</button>
+</div>
+)
+}
+
+function FigureList() {
+const [figures, setFigures] = useState([
+{ id: 1, image: "https://www.w3schools.com/w3images/lights.jpg", caption: "Beautiful
+Lights" },
+{ id: 2, image: "https://www.w3schools.com/w3images/nature.jpg", caption: "Nature" },
+]);
+const [newImage, setNewImage] = useState("");
+function addFigure() {
+if (newImage) {
+setFigures([...figures,
+{
+id: Date.now(),
+image: newImage,
+caption: "New Image"
+}
+]);
+setNewImage("");
+}
+}
+const removeFigure = (id) => {
+setFigures(figures.filter(figure => figure.id !== id))
+}
+return (
+<div className="figure-list">
+<input
+type="text"
+placeholder="Image URL"
+value={newImage}
+onChange={(e) => setNewImage(e.target.value)}
+/>
+<button onClick={addFigure}>Add Image</button>
+<div className="grid">
+{
+figures.map(figure => (
+<BasicFigure
+image={figure.image}
+caption={figure.caption}
+onRemove={() => removeFigure(figure.id)}
+/>
+))
+}
+</div>
+</div>
+)
+}
+export default FigureList;
+App.css
+.App {
+text-align: center;
+padding: 20px;
+}
+.figure-list input {
+margin: 5px;
+padding: 8px;
+width: 180px;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+.figure-list button {
+background-color: #4caf50;
+color: white;
+border: none;
+border-radius: 4px;
+padding: 8px 12px;
+cursor: pointer;
+font-size: 12px;
+}
+.figure-list button:hover {
+background-color: #45a049;
+}
+.grid {
+display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+margin-top: 5px; 
+}
+.basic-figure {
+background: #f9f9f9;
+padding: 10px;
+width: 160px;
+}
+.figure-image {
+width: 100%;
+border-radius: 6px;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.figure-image:hover {
+transform: scale(1.05);
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.figure-caption {
+margin-top: 8px;
+font-size: 14px;
+color: #444;
+}
+.remove-button {
+background-color: #4caf59;
+color: white;
+border: none;
+border-radius: 50%;
+padding: 4px 7px;
+cursor: pointer;
+font-size: 12px;
+}
+.remove-button:hover {
+background-color: #c0392b;
+}
